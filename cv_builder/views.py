@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from .models import CVProfile, Education
+from .serializers import CVProfileSerializer, EducationSerializer
 
-from .models import CVProfile
-from .serializers import CVProfileSerializer
 
 
 class CVProfileAPIView(generics.RetrieveUpdateAPIView):
@@ -19,3 +19,33 @@ class CVProfileAPIView(generics.RetrieveUpdateAPIView):
             }
         )
         return profile
+    
+class EducationListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = EducationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Education.objects.filter(
+            cv_profile__user=self.request.user
+        )
+
+    def perform_create(self, serializer):
+        profile, created = CVProfile.objects.get_or_create(
+            user=self.request.user,
+            defaults={
+                "full_name": self.request.user.username,
+                "email": self.request.user.email,
+                "phone": "",
+            }
+        )
+        serializer.save(cv_profile=profile)
+
+
+class EducationDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = EducationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Education.objects.filter(
+            cv_profile__user=self.request.user
+        )

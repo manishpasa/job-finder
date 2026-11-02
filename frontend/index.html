@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Finder - Test Frontend</title>
+</head>
+<body>
+
+    <h1>Job Finder</h1>
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <br><br>
+
+    <input type="password" id="password" placeholder="Password">
+    <br><br>
+
+    <button onclick="login()">Login</button>
+
+    <p id="message"></p>
+
+    <hr>
+
+    <h2>Available Jobs</h2>
+    <button onclick="loadJobs()">Load Jobs</button>
+
+    <div id="jobs"></div>
+    <hr>
+
+<h2>My CV Profile</h2>
+
+<button onclick="loadCV()">Load My CV Profile</button>
+
+<div id="cv"></div>
+<hr>
+
+<h2>My Education</h2>
+
+<button onclick="loadEducation()">Load My Education</button>
+
+<div id="education"></div>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
