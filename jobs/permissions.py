@@ -10,7 +10,7 @@ class IsProviderOrReadOnly(BasePermission):
 
         return (
             request.user.is_authenticated
-            and request.user.role == "JOB_PROVIDER"
+            and request.user.role in ["JOB_PROVIDER", "ADMIN"]
         )
 
     def has_object_permission(self, request, view, obj):

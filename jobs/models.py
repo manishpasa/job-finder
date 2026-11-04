@@ -33,7 +33,7 @@ class Job(models.Model):
     salary = models.CharField(max_length=100, blank=True)
     deadline = models.DateField(null=True, blank=True)
     vacancies = models.PositiveIntegerField(default=1)
-
+    min_experience_years = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

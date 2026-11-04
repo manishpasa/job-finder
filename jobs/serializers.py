@@ -26,6 +26,7 @@ class JobSerializer(serializers.ModelSerializer):
             "salary",
             "deadline",
             "vacancies",
+            "min_experience_years",
             "is_active",
             "created_at",
         ]
